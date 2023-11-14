@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://art/gameOver.png" type="Texture" id=1]
+[ext_resource path="res://art/resetButton.png" type="Texture" id=2]
+[ext_resource path="res://sorce/death.gd" type="Script" id=3]
+[ext_resource path="res://art/pauseMenu.png" type="Texture" id=4]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.304688, 0.172577, 0.172577, 0.733333 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 350, 350 )
+
+[node name="death" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="GameOverMenu" type="PopupMenu" parent="."]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.501
+margin_left = -10.0
+margin_top = -10.0
+margin_right = 10.0
+margin_bottom = 9.28003
+rect_scale = Vector2( 0.696028, 0.550421 )
+
+[node name="PauseMenu2" type="Sprite" parent="GameOverMenu"]
+position = Vector2( 14.3672, 18.1678 )
+scale = Vector2( 1.34693, 1962.14 )
+texture = SubResource( 3 )
+
+[node name="PauseMenu" type="Sprite" parent="GameOverMenu"]
+texture = ExtResource( 4 )
+
+[node name="restart" type="TouchScreenButton" parent="GameOverMenu"]
+position = Vector2( -201.141, -254.351 )
+scale = Vector2( 0.598635, 0.756996 )
+normal = ExtResource( 2 )
+shape = SubResource( 4 )
+
+[node name="GameOver" type="Sprite" parent="GameOverMenu"]
+position = Vector2( 14.3672, -363.358 )
+texture = ExtResource( 1 )
+
+[connection signal="pressed" from="GameOverMenu/restart" to="." method="_restart_pressed"]
